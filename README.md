@@ -8,7 +8,8 @@
 ## Week 1
 ### 0708
 * 安裝/註冊github  
-* RStudio
+* 安裝R/RStudio  
+* [HW0](https://github.com/YT-Deng/YT-D/blob/master/HW0.Rmd)
 #### 課後練習
 ### 0711
 
