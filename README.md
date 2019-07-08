@@ -9,6 +9,6 @@
 ### 0708
 * 安裝/註冊github  
 * 安裝R/RStudio  
-* [HW0](file:///C:/Users/chris/Desktop/YT-D/Week%201/HW0.html)
+* [HW0](https://github.com/YT-Deng/YT-D/blob/master/Week%201/HW0.html)
 #### 課後練習
 ### 0711
