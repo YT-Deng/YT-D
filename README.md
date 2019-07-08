@@ -8,4 +8,4 @@
 ## Week 1
 * vjhgjbjhn
 
-[link](google.com)
+[link](https://www.google.com.tw/)
