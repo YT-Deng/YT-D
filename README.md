@@ -9,8 +9,7 @@
 ### 0708
 * install github  
 * RStudio
-#### after class  
-  
-###0711
+#### after class
+### 0711
 
 [link](https://www.google.com.tw/)
