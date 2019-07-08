@@ -7,9 +7,9 @@
 
 ## Week 1
 ### 0708
-* install github  
+* 安裝/註冊github  
 * RStudio
-#### after class
+#### 課後練習
 ### 0711
 
 [link](https://www.google.com.tw/)
