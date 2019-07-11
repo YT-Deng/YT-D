@@ -11,4 +11,18 @@
 * 安裝R/RStudio  
 * [HW0](https://yt-deng.github.io/YT-D/Week%201/HW0)
 #### 課後練習
+* html/RMarkdown
+* python
 ### 0711
+*[HW1](https://yt-deng.github.io/YT-D/Week%201/data/Data)
+#### 課後練習
+## Week 2
+### 0715
+#### 課後練習
+### 0718
+#### 課後練習
+## Week 3
+### 0722
+#### 課後練習
+### 0725
+#### 課後練習
