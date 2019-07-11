@@ -14,7 +14,7 @@
 * html/RMarkdown
 * python
 ### 0711
-* [HW1](https://github.com/YT-Deng/YT-D/blob/master/Week%201/data/DATA.html)
+* [HW1](https://yt-deng.github.io/YT-D/Week%201/Data)
 #### 課後練習
 ## Week 2
 ### 0715
