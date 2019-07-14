@@ -1,0 +1,154 @@
+# HW2:資料清洗與網路爬蟲
+## 政大 國貿二 鄧羽彤
+    
+> 數據提取來源  
+>  <a href=https://admin.taiwan.net.tw/FileUploadCategoryListC003330.aspx?Pindex=2&CategoryID=0dcf358f-f875-452d-8d14-2b715d02ab1a&appname=FileUploadCategoryListC003330>觀光旅館營運統計月報</a>  
+>  <a href=https://data.gov.tw/dataset/8792>每日各站點進出站人數</a>    
+    
+    
+* 目標：比對鐵道乘車人次與不同平均價位飯店入住率關係  
+* 本次作業採用2018上半年度台北地區資料(程式碼主要以一月為例)
+    
+```{r results ='hide',message =FALSE,warning=FALSE}
+library(tidyverse)  
+library(dplyr)  
+
+TR<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/data/train.csv")
+H1<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/data/TaipeiHotel_1_Jan.csv")
+H2<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/data/TaipeiHotel_2_Feb.csv")
+H3<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/data/TaipeiHotel_3_Mar.csv")
+H4<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/data/TaipeiHotel_4_Apr.csv")
+H5<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/data/TaipeiHotel_5_May.csv")
+H6<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/data/TaipeiHotel_6_Jun.csv")
+```
+### 鐵道乘車人次  
+
+#### 抓取台北地區的火車站
+```{r}
+TP_TR<-filter(TR,82 < TKT_BEG,TKT_BEG < 106)
+head(TP_TR)
+```
+#### 按照月份分類
+<blockquote>
+TR_Jan<-filter(TP_TR,str_detect(BOARD_DATE,"201801"))  
+TR_Feb<-filter(TP_TR,str_detect(BOARD_DATE,"201802"))  
+TR_Mar<-filter(TP_TR,str_detect(BOARD_DATE,"201803"))  
+TR_Apr<-filter(TP_TR,str_detect(BOARD_DATE,"201804"))  
+TR_May<-filter(TP_TR,str_detect(BOARD_DATE,"201805"))  
+TR_Jun<-filter(TP_TR,str_detect(BOARD_DATE,"201806"))  
+</blockquote>
+```{r}
+TR_Jan<-filter(TP_TR,str_detect(BOARD_DATE,"201801"))
+head(TR_Jan)
+```
+#### 加總各月份出站人次
+<blockquote>
+TR_JanO<-select(TR_Jan,out)  
+TR_JanO_Sum<-sum(TR_JanO)  
+TR_FebO<-select(TR_Feb,out)  
+TR_FebO_Sum<-sum(TR_FebO)  
+TR_MarO<-select(TR_Mar,out)  
+TR_MarO_Sum<-sum(TR_MarO)  
+TR_AprO<-select(TR_Apr,out)  
+TR_AprO_Sum<-sum(TR_AprO)  
+TR_MayO<-select(TR_May,out)  
+TR_MayO_Sum<-sum(TR_MayO)  
+TR_JunO<-select(TR_Jun,out)  
+TR_JunO_Sum<-sum(TR_JunO)  
+</blockquote>
+```{r}
+TR_JanO<-select(TR_Jan,out)
+TR_JanO_Sum<-sum(TR_JanO)
+head(TR_JanO)
+print(TR_JanO_Sum)
+```
+### 不同平均價位飯店入住人次  
+#### 確認分類名稱
+```{r}
+objects(H1)
+```
+#### 將平均房間價格分為三區間
+<blockquote>
+H1_low<- filter(H1, Average.Room.Rate < 3000)  
+H1_mid<- filter(H1, Average.Room.Rate > 3000, Average.Room.Rate < 4000)  
+H1_high<- filter(H1, Average.Room.Rate > 4000)  
+H2_low<- filter(H2, Average.Room.Rate < 3000)  
+H2_mid<- filter(H2, Average.Room.Rate > 3000, Average.Room.Rate < 4000)  
+H2_high<- filter(H2, Average.Room.Rate > 4000)  
+H3_low<- filter(H3, Average.Room.Rate < 3000)  
+H3_mid<- filter(H3, Average.Room.Rate > 3000, Average.Room.Rate < 4000)  
+H3_high<- filter(H3, Average.Room.Rate > 4000)  
+H4_low<- filter(H4, Average.Room.Rate < 3000)  
+H4_mid<- filter(H4, Average.Room.Rate > 3000, Average.Room.Rate < 4000)  
+H4_high<- filter(H4, Average.Room.Rate > 4000)  
+H5_low<- filter(H5, Average.Room.Rate < 3000)  
+H5_mid<- filter(H5, Average.Room.Rate > 3000, Average.Room.Rate < 4000)  
+H5_high<- filter(H5, Average.Room.Rate > 4000)  
+H6_low<- filter(H6, Average.Room.Rate < 3000)  
+H6_mid<- filter(H6, Average.Room.Rate > 3000, Average.Room.Rate < 4000)  
+H6_high<- filter(H6, Average.Room.Rate > 4000)  
+</blockquote>
+```{r}
+H1_low<- filter(H1, Average.Room.Rate < 3000)
+head(H1_low)
+
+H1_mid<- filter(H1, Average.Room.Rate > 3000, Average.Room.Rate < 4000)
+head(H1_mid)
+
+H1_high<- filter(H1, Average.Room.Rate > 4000)
+head(H1_high)
+```
+#### 加總各月份不同平均價位飯店入住率
+<blockquote>
+H1_low_Occ<-select(H1_low,No..of.Rooms.Occupied)  
+sum(H1_low_Occ)  
+H1_mid_Occ<-select(H1_mid,No..of.Rooms.Occupied)  
+sum(H1_mid_Occ)  
+H1_high_Occ<-select(H1_high,No..of.Rooms.Occupied)  
+sum(H1_high_Occ)  
+H2_low_Occ<-select(H2_low,No..of.Rooms.Occupied)  
+sum(H2_low_Occ)  
+H2_mid_Occ<-select(H2_mid,No..of.Rooms.Occupied)  
+sum(H2_mid_Occ)  
+H2_high_Occ<-select(H2_high,No..of.Rooms.Occupied)    
+sum(H2_high_Occ)  
+H3_low_Occ<-select(H3_low,No..of.Rooms.Occupied)  
+sum(H3_low_Occ)  
+H3_mid_Occ<-select(H3_mid,No..of.Rooms.Occupied)  
+sum(H3_mid_Occ)  
+H3_high_Occ<-select(H3_high,No..of.Rooms.Occupied)  
+sum(H3_high_Occ)  
+H4_low_Occ<-select(H4_low,No..of.Rooms.Occupied)  
+sum(H4_low_Occ)  
+H4_mid_Occ<-select(H4_mid,No..of.Rooms.Occupied)  
+sum(H4_mid_Occ)  
+H4_high_Occ<-select(H4_high,No..of.Rooms.Occupied)  
+sum(H4_high_Occ)  
+H5_low_Occ<-select(H5_low,No..of.Rooms.Occupied)  
+sum(H5_low_Occ)  
+H5_mid_Occ<-select(H5_mid,No..of.Rooms.Occupied)  
+sum(H5_mid_Occ)  
+H5_high_Occ<-select(H5_high,No..of.Rooms.Occupied)  
+sum(H5_high_Occ)  
+H6_low_Occ<-select(H6_low,No..of.Rooms.Occupied)  
+sum(H6_low_Occ)  
+H6_mid_Occ<-select(H6_mid,No..of.Rooms.Occupied)  
+sum(H6_mid_Occ)  
+H6_high_Occ<-select(H6_high,No..of.Rooms.Occupied)  
+sum(H6_high_Occ)  
+</blockquote>
+```{r}
+H1_low_Occ<-select(H1_low,No..of.Rooms.Occupied)
+sum(H1_low_Occ)
+print(H1_low_Occ)
+sum(H1_low_Occ)
+
+H1_mid_Occ<-select(H1_mid,No..of.Rooms.Occupied)
+print(H1_mid_Occ)
+sum(H1_mid_Occ)
+
+H1_high_Occ<-select(H1_high,No..of.Rooms.Occupied)
+print(H1_high_Occ)
+sum(H1_high_Occ)
+```
+
