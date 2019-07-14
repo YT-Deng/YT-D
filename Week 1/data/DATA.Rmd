@@ -139,7 +139,6 @@ sum(H6_high_Occ)
 </blockquote>
 ```{r}
 H1_low_Occ<-select(H1_low,No..of.Rooms.Occupied)
-sum(H1_low_Occ)
 print(H1_low_Occ)
 sum(H1_low_Occ)
 
