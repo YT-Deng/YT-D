@@ -6,21 +6,21 @@
 學號：107301091  
 		
 		
-[教學網站](http://peculab.org/)
+* [教學網站](http://peculab.org/)
 ## Week 1
 ### 0708
-* 安裝/註冊github  
-* 安裝R/RStudio  
-* [HW0](https://yt-deng.github.io/YT-D/Week%201/HW0)
+> 安裝/註冊github  
+> 安裝R/RStudio  
+> [HW0](https://yt-deng.github.io/YT-D/Week%201/0708/HW0)
 #### 課後練習
-* RMarkdown
-* ipython
+>> RMarkdown
+>> ipython
 ### 0711
-* 資料清洗
-* 網路爬蟲
+> 資料清洗
+> 網路爬蟲
 #### 課後練習
-* [HW1](https://yt-deng.github.io/YT-D/Week%201/data/DATA)
-* 爬蟲資料 [ptt_Tai_travel](https://www.ptt.cc/bbs/Tai-travel/index1167.html)
+>> [HW1](https://yt-deng.github.io/YT-D/Week%201/0711/DATA)
+>> 爬蟲資料 [ptt_Tai_travel](https://www.ptt.cc/bbs/Tai-travel/index1167.html)
 ## Week 2
 ### 0715
 #### 課後練習
