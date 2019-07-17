@@ -20,10 +20,13 @@
 > 網路爬蟲
 #### 課後練習
 >> [HW1](https://yt-deng.github.io/YT-D/Week%201/0711/DATA)
+>>> [HW1(改)]()
 >> 爬蟲資料 [ptt_Tai_travel](https://www.ptt.cc/bbs/Tai-travel/index1167.html)
 ## Week 2
 ### 0715
+> 資料視覺化
 #### 課後練習
+>> [HW2](https://yt-deng.github.io/YT-D/Week%202/0715/chart)
 ### 0718
 #### 課後練習
 ## Week 3

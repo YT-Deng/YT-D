@@ -1,3 +1,14 @@
+# HW2:è³‡æ–™è¦–è¦ºåŒ–
+## æ”¿å¤§ åœ‹è²¿äºŒ é„§ç¾½å½¤
+    
+> æ•¸æ“šæå–ä¾†æº  
+>  <a href=https://admin.taiwan.net.tw/FileUploadCategoryListC003330.aspx?Pindex=2&CategoryID=0dcf358f-f875-452d-8d14-2b715d02ab1a&appname=FileUploadCategoryListC003330>è§€å…‰æ—…é¤¨ç‡Ÿé‹çµ±è¨ˆæœˆå ±</a>  
+>  <a href=https://data.gov.tw/dataset/8792>æ¯æ—¥å„ç«™é»é€²å‡ºç«™äººæ•¸</a>    
+
+* å»¶çºŒHW1è³‡æ–™é€²è¡Œæ•´ç†  
+
+### å°å…¥å¥—ä»¶èˆ‡æª”æ¡ˆ
+```{r results ='hide',message =FALSE,warning=FALSE}
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
@@ -9,20 +20,15 @@ H3<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_3_Mar.csv")
 H4<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_4_Apr.csv")
 H5<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_5_May.csv")
 H6<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_6_Jun.csv")
-
-
+```
+### å»¶çºŒä¸Šå‘¨ä»»å‹™
+```{r}
 TR_TP<-filter(TR,82 < TKT_BEG & TKT_BEG < 106)
 mon=substring(TR_TP$BOARD_DATE,first = 1,last = 6)
 TR_TP_M<-mutate(TR_TP,Month=mon)
-print(TR_TP_M)
 TR_Fin<-group_by(TR_TP_M,Month)%>%
   summarise(out_sum=sum(out))
-print(TR_Fin)
 TR_Fin_half<-filter(TR_Fin,Month<=201806)
-print(TR_Fin_half$out_sum)
-
-
-
 
 H1_low<- filter(H1, Average.Room.Rate < 3000)
 H1_mid<- filter(H1, Average.Room.Rate > 3000, Average.Room.Rate < 4000)
@@ -62,9 +68,9 @@ H6_low_num<-sum(select(H6_low,No..of.Rooms.Occupied))
 H6_mid_num<-sum(select(H6_mid,No..of.Rooms.Occupied))
 H6_high_num<-sum(select(H6_high,No..of.Rooms.Occupied))
 
-
-
-
+```
+### è£½ä½œä¸åŒåƒ¹æ ¼å€é–“çš„æ—…é¤¨å…¥ä½æ•¸èˆ‡ç«è»Šå‡ºç«™äººæ¬¡æ¯”è¼ƒæŠ˜ç·šåœ–  
+```{r}
 hotel_low<-c(H1_low_num,H2_low_num,H3_low_num,H4_low_num,H5_low_num,H6_low_num)
 hotel_mid<-c(H1_mid_num,H2_mid_num,H3_mid_num,H4_mid_num,H5_mid_num,H6_mid_num)
 hotel_high<-c(H1_high_num,H2_high_num,H3_high_num,H4_high_num,H5_high_num,H6_high_num)
@@ -85,7 +91,7 @@ Table<-data.frame(Category=rep(c("passenger(/50)","hotel_low","hotel_mid","hotel
                          H1_low_num,H2_low_num,H3_low_num,H4_low_num,H5_low_num,H6_low_num,
                          H1_mid_num,H2_mid_num,H3_mid_num,H4_mid_num,H5_mid_num,H6_mid_num,
                          H1_high_num,H2_high_num,H3_high_num,H4_high_num,H5_high_num,H6_high_num))
-#¦]¤õ¨®®È«È¼Æ¶q¯Å¹L¤j¡A¬G¥ş³¡¦P°£¥H50µ¥¤ñ¨ÒÁY´î
+#å› ç«è»Šæ—…å®¢æ•¸é‡ç´šéå¤§ï¼Œæ•…å…¨éƒ¨åŒé™¤ä»¥50ç­‰æ¯”ä¾‹ç¸®æ¸›
 print(Table)
 Table$Category <- factor(Table$Category, levels = c("passenger(/50)","hotel_low","hotel_mid","hotel_high"), ordered = TRUE )
 Table$Month <- factor(Table$Month, levels = c("Jan","Feb","Mar","Apr","May","Jun"), ordered = TRUE )
@@ -96,8 +102,9 @@ Graph<-ggplot(data=Table,aes(x=Month,y=Population,group=Category))+
 
 Graph_plus<-Graph+scale_color_manual(values=c("#990000","#33FFFF", "#0000FF","#000066"))
 print(Graph_plus)
-#¦U¯Å»ù¦ì®ÈÀ]¦í«È¼Æ¶q»P¤õ¨®­¼«È¼Æ¶q¤ñ¸û
-
+```
+### è£½ä½œä¸åŒåƒ¹æ ¼å€é–“æ—…é¤¨çš„æˆ¿ç§Ÿæ”¶å…¥åœ“é¤…åœ–
+```{r}
 Rev_low<-sum(select(H1_low,Room.Revenue),select(H2_low,Room.Revenue),
              select(H3_low,Room.Revenue),select(H4_low,Room.Revenue),
              select(H5_low,Room.Revenue),select(H6_low,Room.Revenue))
@@ -123,7 +130,35 @@ ggplot(Revenue,aes(x="",y=Rev,fill=Category))+
   geom_bar(stat = "identity")+
   coord_polar("y", start=0)+
   geom_text(aes(x = 1, y = midpoint, label = lab))
-#°s©±ÀÉ¦ì¦¬¯q¥e¤ñ(¶ê»æ)
+```
+### ä»¥é•·æ¢åœ–æ¯”è¼ƒä¸åŒæœˆä»½ç¸½æ—…é¤¨å…¥ä½æ•¸ã€ç«è»Šå‡ºç«™äººæ¬¡
+```{r}
+Rev_low<-sum(select(H1_low,Room.Revenue),select(H2_low,Room.Revenue),
+             select(H3_low,Room.Revenue),select(H4_low,Room.Revenue),
+             select(H5_low,Room.Revenue),select(H6_low,Room.Revenue))
+Rev_mid<-sum(select(H1_mid,Room.Revenue),select(H2_mid,Room.Revenue),
+             select(H3_mid,Room.Revenue),select(H4_mid,Room.Revenue),
+             select(H5_mid,Room.Revenue),select(H6_mid,Room.Revenue))
+Rev_high<-sum(select(H1_high,Room.Revenue),select(H2_high,Room.Revenue),
+              select(H3_high,Room.Revenue),select(H4_high,Room.Revenue),
+              select(H5_high,Room.Revenue),select(H6_high,Room.Revenue))
+
+Rev=c(Rev_low,Rev_mid,Rev_high)
+Category=c("hotel_low","hotel_mid","hotel_high")
+Revenue<-data.frame(Category=c("hotel_low","hotel_mid","hotel_high"),
+                    Rev=c(Rev_low,Rev_mid,Rev_high))
+print(Rev)
+Reve=cumsum(Rev)
+midpoint = Reve - Rev/2
+
+lab = paste0(Category, " ", round(Rev/sum(Rev) * 100, 1), "%")
+
+
+ggplot(Revenue,aes(x="",y=Rev,fill=Category))+
+  geom_bar(stat = "identity")+
+  coord_polar("y", start=0)+
+  geom_text(aes(x = 1, y = midpoint, label = lab))
+#é…’åº—æª”ä½æ”¶ç›Šå æ¯”(åœ“é¤…)
 
 sum1_hotel<-sum(select(H1,No..of.Rooms.Occupied))
 print(sum1_hotel)
@@ -143,17 +178,8 @@ Bar<-data.frame(Month=factor(rep(c("Jan","Feb","Mar","Apr","May","Jun"),2),
 
 print(Bar)
 
-Bar_ch1<-ggplot(data=Bar,aes(x=Month,y=Popu,fill=Gro)) +
-  geom_bar(stat = "identity",position="stack")
-print(Bar_ch1)
-
 Bar_ch2<-ggplot(data=Bar,aes(x=Month,y=Popu,fill=Gro)) +
   geom_bar(stat = "identity",position="dodge")
 print(Bar_ch2)
 
-
-#sum(hotel)»Ppassenger¤ñ¸û->®È¹C©ô©u(ªø±ø)
-#hotel¥­§¡Àç¦¬(´²¥¬¹Ï)
-#passenger,hotel¤H¦¸¡B¦¬¤J(¦a¹Ï)
-#¤õ¨®§é¦©and¤¤ÀÉhotel
-
+```
