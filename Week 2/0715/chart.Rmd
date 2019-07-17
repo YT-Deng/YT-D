@@ -103,9 +103,7 @@ Graph<-ggplot(data=Table,aes(x=Month,y=Population,group=Category))+
 Graph_plus<-Graph+scale_color_manual(values=c("#990000","#33FFFF", "#0000FF","#000066"))
 print(Graph_plus)
 ```
-
 ###  製作不同價格區間旅館的房租收入圓餅圖
-
 ```{r}
 Rev_low<-sum(select(H1_low,Room.Revenue),select(H2_low,Room.Revenue),
              select(H3_low,Room.Revenue),select(H4_low,Room.Revenue),
@@ -133,34 +131,10 @@ ggplot(Revenue,aes(x="",y=Rev,fill=Category))+
   coord_polar("y", start=0)+
   geom_text(aes(x = 1, y = midpoint, label = lab))
 ```
+
 ### 以長條圖比較不同月份總旅館入住數、火車出站人次
+
 ```{r}
-Rev_low<-sum(select(H1_low,Room.Revenue),select(H2_low,Room.Revenue),
-             select(H3_low,Room.Revenue),select(H4_low,Room.Revenue),
-             select(H5_low,Room.Revenue),select(H6_low,Room.Revenue))
-Rev_mid<-sum(select(H1_mid,Room.Revenue),select(H2_mid,Room.Revenue),
-             select(H3_mid,Room.Revenue),select(H4_mid,Room.Revenue),
-             select(H5_mid,Room.Revenue),select(H6_mid,Room.Revenue))
-Rev_high<-sum(select(H1_high,Room.Revenue),select(H2_high,Room.Revenue),
-              select(H3_high,Room.Revenue),select(H4_high,Room.Revenue),
-              select(H5_high,Room.Revenue),select(H6_high,Room.Revenue))
-
-Rev=c(Rev_low,Rev_mid,Rev_high)
-Category=c("hotel_low","hotel_mid","hotel_high")
-Revenue<-data.frame(Category=c("hotel_low","hotel_mid","hotel_high"),
-                    Rev=c(Rev_low,Rev_mid,Rev_high))
-print(Rev)
-Reve=cumsum(Rev)
-midpoint = Reve - Rev/2
-
-lab = paste0(Category, " ", round(Rev/sum(Rev) * 100, 1), "%")
-
-
-ggplot(Revenue,aes(x="",y=Rev,fill=Category))+
-  geom_bar(stat = "identity")+
-  coord_polar("y", start=0)+
-  geom_text(aes(x = 1, y = midpoint, label = lab))
-#酒店檔位收益占比(圓餅)
 
 sum1_hotel<-sum(select(H1,No..of.Rooms.Occupied))
 print(sum1_hotel)
