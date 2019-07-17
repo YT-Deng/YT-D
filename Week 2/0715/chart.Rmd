@@ -103,7 +103,9 @@ Graph<-ggplot(data=Table,aes(x=Month,y=Population,group=Category))+
 Graph_plus<-Graph+scale_color_manual(values=c("#990000","#33FFFF", "#0000FF","#000066"))
 print(Graph_plus)
 ```
-### 製作不同價格區間旅館的房租收入圓餅圖
+
+###  製作不同價格區間旅館的房租收入圓餅圖
+
 ```{r}
 Rev_low<-sum(select(H1_low,Room.Revenue),select(H2_low,Room.Revenue),
              select(H3_low,Room.Revenue),select(H4_low,Room.Revenue),
