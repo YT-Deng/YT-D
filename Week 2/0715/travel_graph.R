@@ -156,4 +156,4 @@ print(Bar_ch2)
 #hotel平均營收(散布圖)
 #passenger,hotel人次、收入(地圖)
 #火車折扣and中檔hotel
-
+#火車除以旅館
