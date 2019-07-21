@@ -1,3 +1,16 @@
+# HW1:資料清洗與網路爬蟲
+## 政大 國貿二 鄧羽彤
+    
+> 數據提取來源  
+>  <a href=https://admin.taiwan.net.tw/FileUploadCategoryListC003330.aspx?Pindex=2&CategoryID=0dcf358f-f875-452d-8d14-2b715d02ab1a&appname=FileUploadCategoryListC003330>觀光旅館營運統計月報</a>  
+>  <a href=https://data.gov.tw/dataset/8792>每日各站點進出站人數</a>    
+    
+    
+* 目標：比對鐵道乘車人次與不同平均價位飯店入住率關係  
+* 本次作業採用2018上半年度台北地區資料(程式碼主要以一月為例)  
+
+### 導入套件和檔案
+```{r results ='hide',message =FALSE,warning=FALSE}
 library(readr)
 library(tidyverse)
 library(dplyr)
@@ -10,8 +23,10 @@ H4<-read_csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_4_Apr.csv")
 H5<-read_csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_5_May.csv")
 H6<-read_csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_6_Jun.csv")
 
-#�ɤJ�M��M�ɮ�
+```
 
+### 台北地區鐵路出站人次
+```{r}
 TR_TP<-filter(TR,82 < TKT_BEG & TKT_BEG < 106)
 mon=substring(TR_TP$BOARD_DATE,first = 1,last = 6)
 TR_TP_M<-mutate(TR_TP,Month=mon)
@@ -19,11 +34,16 @@ head(TR_TP_M)
 TR_Fin<-group_by(TR_TP_M,Month)%>%
   summarise(out_sum=sum(out))
 head(TR_Fin)
+```
 
-#�x�_�a���K���X���H��
-
+### 不同平均價位飯店入住人次  
+#### 確認分類名稱
+```{r}
 objects(H1)
+```
 
+#### 將平均房間價格分為三區間
+```{r}
 H1_low<- filter(H1, Average.Room.Rate < 3000)
 H1_mid<- filter(H1, Average.Room.Rate > 3000, Average.Room.Rate < 4000)
 H1_high<- filter(H1, Average.Room.Rate > 4000)
@@ -42,8 +62,16 @@ H5_high<- filter(H5, Average.Room.Rate > 4000)
 H6_low<- filter(H6, Average.Room.Rate < 3000)
 H6_mid<- filter(H6, Average.Room.Rate > 3000, Average.Room.Rate < 4000)
 H6_high<- filter(H6, Average.Room.Rate > 4000)
-str(H1_low)
+```
 
+```{r}
+str(H1_low)
+str(H1_mid)
+str(H1_high)
+```
+
+#### 加總各等級旅館入住數
+```{r}
 H1_low_num<-sum(select(H1_low,No..of.Rooms.Occupied))
 H1_mid_num<-sum(select(H1_mid,No..of.Rooms.Occupied))
 H1_high_num<-sum(select(H1_high,No..of.Rooms.Occupied))
@@ -62,3 +90,10 @@ H5_high_num<-sum(select(H5_high,No..of.Rooms.Occupied))
 H6_low_num<-sum(select(H6_low,No..of.Rooms.Occupied))
 H6_mid_num<-sum(select(H6_mid,No..of.Rooms.Occupied))
 H6_high_num<-sum(select(H6_high,No..of.Rooms.Occupied))
+```
+
+```{r}
+print(H1_low_num)
+print(H1_mid_num)
+print(H1_high_num)
+```

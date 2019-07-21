@@ -157,3 +157,6 @@ print(Bar_ch2)
 #passenger,hotel人次、收入(地圖)
 #火車折扣and中檔hotel
 #火車除以旅館
+#density curve
+#in+out=總流量
+#locater()
