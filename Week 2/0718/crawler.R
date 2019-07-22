@@ -1,4 +1,5 @@
 library("rvest")
+library("knitr")
 
 url<-read_html("https://www.dcard.tw/search?forum=food&query=%E6%B3%A1%E9%BA%B5&sort=relevance")
 

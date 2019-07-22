@@ -14,7 +14,6 @@ library("RColorBrewer")
 library("wordcloud")
 library("dplyr")
 library("ggplot2")
-library("knitr")
 ```
 
 ### 讀取網站文字  
@@ -67,5 +66,4 @@ TDM<-TermDocumentMatrix(words_tm)
 inspect(TDM)
 
 TFIDF<-as.matrix(TDM)
-kable(TFIDF)
 ```
