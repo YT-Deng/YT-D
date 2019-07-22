@@ -8,6 +8,7 @@ library("RColorBrewer")
 library("wordcloud")
 library("dplyr")
 library("ggplot2")
+library("knitr")
 
 
 url<-read_html("https://www.dcard.tw/f/food/p/224587575")
@@ -48,3 +49,4 @@ TDM<-TermDocumentMatrix(words_tm)
 inspect(TDM)
 
 TFIDF<-as.matrix(TDM)
+kable(TFIDF)
