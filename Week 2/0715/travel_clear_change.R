@@ -1,13 +1,13 @@
 library(tidyverse)
 library(dplyr)
 
-TR<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/train.csv")
-H1<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_1_Jan.csv")
-H2<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_2_Feb.csv")
-H3<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_3_Mar.csv")
-H4<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_4_Apr.csv")
-H5<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_5_May.csv")
-H6<-read.csv("C:/users/chris/Desktop/YT-D/Week 1/0711/TaipeiHotel_6_Jun.csv")
+TR<-read.csv("C:/users/chris/Documents/GitHub/YT-D/Week 1/0711/train.csv")
+H1<-read.csv("C:/users/chris/Documents/GitHub/YT-D/Week 1/0711/TaipeiHotel_1_Jan.csv")
+H2<-read.csv("C:/users/chris/Documents/GitHub/YT-D/Week 1/0711/TaipeiHotel_2_Feb.csv")
+H3<-read.csv("C:/users/chris/Documents/GitHub/YT-D/Week 1/0711/TaipeiHotel_3_Mar.csv")
+H4<-read.csv("C:/users/chris/Documents/GitHub/YT-D/Week 1/0711/TaipeiHotel_4_Apr.csv")
+H5<-read.csv("C:/users/chris/Documents/GitHub/YT-D/Week 1/0711/TaipeiHotel_5_May.csv")
+H6<-read.csv("C:/users/chris/Documents/GitHub/YT-D/Week 1/0711/TaipeiHotel_6_Jun.csv")
 
 #導入套件和檔案
 

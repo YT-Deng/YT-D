@@ -4,16 +4,17 @@
     
 ### 導入套件與檔案  
 ```{r results ='hide',message =FALSE,warning=FALSE}
-library("rvest")
-library("jiebaRD")
-library("jiebaR")
-library("NLP")
-library("tm")
-library("tmcn")
-library("RColorBrewer")
-library("wordcloud")
-library("dplyr")
-library("ggplot2")
+library(rvest)
+library(jiebaRD)
+library(jiebaR)
+library(NLP)
+library(tm)
+library(tmcn)
+library(RColorBrewer)
+library(wordcloud)
+library(dplyr)
+library(ggplot2)
+library(knitr)
 ```
 
 ### 讀取網站文字  
